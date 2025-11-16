@@ -1,277 +1,160 @@
-# 🎨 FormCraft Pro
+# FormCraft Pro v2.2.0
 
-<div align="center">
+Advanced WordPress form builder with template gallery and visual form management.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-blue.svg)
-![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg)
-![React](https://img.shields.io/badge/React-18.2-61dafb.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178c6.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+## 🎉 What's New in v2.2.0
 
-**یک Form Builder پیشرفته و مدرن برای وردپرس**
+### Enhanced Help & Support
+- Comprehensive help center with searchable documentation
+- Categorized help topics (Getting Started, Forms, Fields, Entries)
+- Frequently Asked Questions (FAQs) with expandable answers
+- Developer resources and API documentation
+- Quick links to video tutorials and support
 
-[ویژگی‌ها](#-ویژگی‌ها) • [نصب](#-نصب) • [استفاده](#-استفاده) • [توسعه](#-توسعه) • [مستندات](#-مستندات)
+### Advanced System Status
+- Detailed WordPress environment information
+- Server configuration and PHP extensions check
+- Database tables status and health monitoring
+- System requirements verification with visual indicators
+- Download or copy system report for support tickets
+- Real-time refresh functionality
 
-</div>
+## 🎉 What's New in v2.1.0
 
----
+### Template Gallery
+- 10 pre-built form templates ready to use
+- Blank form option for custom creation
+- Templates include: Contact Forms, Contest Entry, Donation, eCommerce, Payment Forms, Employment Application, and Event Registration
 
-## 📋 فهرست مطالب
+### Enhanced Dashboard
+- Action dropdown menu for each form
+- Quick access to Edit, Duplicate, View Entries, and Delete
+- Improved form management interface
+- Better visual hierarchy
 
-- [درباره پروژه](#-درباره-پروژه)
-- [ویژگی‌ها](#-ویژگی‌ها)
-- [پیش‌نیازها](#-پیش‌نیازها)
-- [نصب](#-نصب)
-- [استفاده](#-استفاده)
-- [توسعه](#-توسعه)
-- [ساختار پروژه](#-ساختار-پروژه)
-- [REST API](#-rest-api)
-- [مستندات](#-مستندات)
-- [مشارکت](#-مشارکت)
-- [لایسنس](#-لایسنس)
+### Improved Settings Pages
+- Tabbed interface for better organization
+- General, Email, reCAPTCHA, and Advanced settings
+- Gravity Forms-inspired design
+- Clear descriptions for each option
 
----
+### All Entries Page
+- View all form submissions in one place
+- Filter by form
+- Search functionality
+- Export to CSV
+- Entry detail modal
 
-## 🎯 درباره پروژه
+### Import/Export
+- Export forms to JSON
+- Import forms from JSON
+- Bulk export multiple forms
+- Easy form migration between sites
 
-FormCraft Pro یک پلاگین وردپرس قدرتمند برای ساخت فرم است که با تکنولوژی‌های مدرن ساخته شده:
+## 📦 Installation
 
-- **Frontend:** React 18 + TypeScript + Tailwind CSS
-- **Backend:** PHP + WordPress REST API
-- **Build Tool:** Vite
-- **State Management:** Zustand
-- **Drag & Drop:** @dnd-kit
+1. Download `formcraft-pro-v2.2.0.zip`
+2. Go to WordPress Admin → Plugins → Add New
+3. Click "Upload Plugin"
+4. Choose the ZIP file and click "Install Now"
+5. Activate the plugin
 
----
+## 🚀 Features
 
-## ✨ ویژگی‌ها
+- **Drag & Drop Form Builder**: Visual form creation
+- **Template Gallery**: 10 ready-to-use form templates
+- **Multiple Field Types**: Text, Email, Textarea, Select, Radio, Checkbox, File Upload, and more
+- **Form Management**: Easy-to-use dashboard with quick actions
+- **Entry Management**: View, search, filter, and export form submissions
+- **Settings**: Comprehensive settings for email, reCAPTCHA, and advanced options
+- **Import/Export**: Migrate forms between sites easily
+- **Responsive Design**: Works on all devices
+- **RTL Support**: Full right-to-left language support
 
-### 🎨 رابط کاربری مدرن
-- ✅ طراحی زیبا و کاربرپسند با React
-- ✅ Drag & Drop برای مرتب‌سازی فیلدها
-- ✅ پیش‌نمایش زنده فرم
-- ✅ پشتیبانی کامل از RTL
+## 📋 Available Templates
 
-### 📝 انواع فیلد
-- ✅ فیلد متنی (Text)
-- ✅ ایمیل (Email)
-- ✅ متن چند خطی (Textarea)
-- ✅ لیست کشویی (Select)
-- ✅ دکمه رادیویی (Radio)
-- ✅ چک‌باکس (Checkbox)
-- ✅ عدد (Number)
-- ✅ تاریخ (Date)
-- ✅ آپلود فایل (File)
+1. **Blank Form** - Start from scratch
+2. **Simple Contact Form** - Basic contact form with name, email, and message
+3. **Advanced Contact Form** - Extended contact form with phone and subject
+4. **Contest Entry Form** - For competitions and giveaways
+5. **Donation Form** - Accept donations with amount selection
+6. **eCommerce Order Form** - Product order form with quantity
+7. **Stripe Checkout Form** - Payment form with Stripe integration
+8. **PayPal Checkout Form** - Payment form with PayPal integration
+9. **Employment Application Form** - Job application with resume upload
+10. **Event Registration Form** - Event signup with ticket types
 
-### 🎨 سفارشی‌سازی
-- ✅ تغییر رنگ برچسب
-- ✅ تغییر رنگ حاشیه
-- ✅ تنظیم عرض فیلد
-- ✅ اعتبارسنجی سفارشی
+## 🎯 Usage
 
-### 📊 مدیریت ورودی‌ها
-- ✅ مشاهده تمام ورودی‌ها
-- ✅ فیلتر و جستجو
-- ✅ Export به CSV
-- ✅ حذف ورودی‌ها
+### Creating a New Form
 
-### 🔧 قابلیت‌های پیشرفته
-- ✅ Import/Export فرم‌ها
-- ✅ تنظیمات ایمیل
-- ✅ Google reCAPTCHA
-- ✅ System Status
-- ✅ راهنمای کامل
+1. Go to FormCraft → Dashboard
+2. Click "Add New"
+3. Select a template or start with a blank form
+4. Customize fields in the form builder
+5. Configure form settings
+6. Save and embed in your pages
 
----
+### Managing Forms
 
-## 📋 پیش‌نیازها
+- **Edit**: Click on form title or use action menu
+- **Duplicate**: Create a copy of existing form
+- **View Entries**: See all submissions for a form
+- **Delete**: Remove form permanently
 
-### سرور:
-- WordPress 5.8 یا بالاتر
-- PHP 7.4 یا بالاتر
-- MySQL 5.6 یا بالاتر
+### Viewing Entries
 
-### توسعه:
-- Node.js 16+ و npm
-- Git
+1. Go to FormCraft → Entries
+2. Filter by form or search
+3. Click eye icon to view entry details
+4. Export to CSV for analysis
 
----
+### Settings
 
-## 🚀 نصب
+1. Go to FormCraft → Settings
+2. Configure:
+   - **General**: Currency, form options, uninstall behavior
+   - **Email**: From name, from email, notifications
+   - **reCAPTCHA**: Spam protection settings
+   - **Advanced**: AJAX submission, data collection
 
-### نصب از فایل ZIP
+## 🔧 System Requirements
 
-1. فایل `formcraft-pro.zip` را دانلود کنید
-2. به داشبورد وردپرس بروید
-3. به **Plugins > Add New > Upload Plugin** بروید
-4. فایل ZIP را آپلود و نصب کنید
-5. پلاگین را فعال کنید
+- WordPress 5.0 or higher
+- PHP 7.4 or higher
+- MySQL 5.6 or higher
 
-### نصب دستی
+## 📝 Changelog
 
-```bash
-# کلون کردن ریپو
-git clone https://github.com/your-username/formcraft-pro.git
+### Version 2.2.0 (2024-11-17)
+- Enhanced Help page with searchable documentation
+- Advanced System Status page with detailed information
+- Download/Copy system report functionality
+- Real-time status indicators
+- Better organization of help resources
 
-# رفتن به پوشه پروژه
-cd formcraft-pro
+### Version 2.1.0 (2024-11-17)
+- Added Template Gallery with 10 pre-built templates
+- Added Action Dropdown menu for forms
+- Improved Settings page with tabbed interface
+- Enhanced All Entries page with filtering and search
+- Better Import/Export functionality
+- UI/UX improvements throughout
 
-# نصب وابستگی‌ها
-npm install
+### Version 2.0.0 (2024-11-15)
+- Initial release
+- Form Builder with drag-and-drop
+- Entry management
+- Basic settings
 
-# ساخت فایل‌های production
-npm run build
+## 🆘 Support
 
-# کپی به وردپرس
-cp -r . /path/to/wordpress/wp-content/plugins/formcraft-pro
-```
+For support, please visit [https://looparc.ir](https://looparc.ir)
 
----
+## 📄 License
 
-## 💡 استفاده
-
-### 1. ساخت فرم جدید
-
-1. به **FormCraft > فرم جدید** بروید
-2. عنوان فرم را وارد کنید
-3. فیلدهای مورد نظر را اضافه کنید
-4. با Drag & Drop ترتیب را تنظیم کنید
-5. روی **ذخیره فرم** کلیک کنید
-
-### 2. نمایش فرم در سایت
-
-از Shortcode استفاده کنید:
-
-```php
-[formcraft id="1"]
-```
-
-یا در قالب:
-
-```php
-<?php echo do_shortcode('[formcraft id="1"]'); ?>
-```
-
-### 3. مشاهده ورودی‌ها
-
-1. به **FormCraft > ورودی‌ها** بروید
-2. فرم مورد نظر را انتخاب کنید
-3. ورودی‌ها را مشاهده یا Export کنید
+This plugin is proprietary software. All rights reserved.
 
 ---
 
-## 🛠 توسعه
-
-### راه‌اندازی محیط توسعه
-
-```bash
-# نصب وابستگی‌ها
-npm install
-
-# اجرای dev server با HMR
-npm run dev
-
-# ساخت برای production
-npm run build
-```
-
-### ساختار دستورات
-
-```json
-{
-  "dev": "vite",           // Development server
-  "build": "vite build"    // Production build
-}
-```
-
----
-
-## 📁 ساختار پروژه
-
-```
-formcraft-pro/
-├── assets/                 # فایل‌های استاتیک
-│   ├── icon.svg
-│   ├── frontend.css
-│   └── frontend.js
-├── build/                  # خروجی build
-│   ├── admin.bundle.js
-│   └── admin.styles.css
-├── includes/               # کلاس‌های PHP
-│   ├── class-formcraft-activator.php
-│   └── class-formcraft-frontend.php
-├── src/
-│   ├── admin/              # کد React
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── store/
-│   │   └── App.tsx
-│   └── php/                # کد PHP
-│       ├── Controllers/
-│       └── Services/
-├── formcraft-pro.php       # فایل اصلی
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
-```
-
----
-
-## 🔌 REST API
-
-### Endpoints
-
-#### فرم‌ها
-
-```http
-GET    /wp-json/fcp/v1/forms
-GET    /wp-json/fcp/v1/forms/{id}
-POST   /wp-json/fcp/v1/forms
-PUT    /wp-json/fcp/v1/forms/{id}
-DELETE /wp-json/fcp/v1/forms/{id}
-```
-
-#### ورودی‌ها
-
-```http
-POST   /wp-json/fcp/v1/entries
-GET    /wp-json/fcp/v1/entries/{id}
-GET    /wp-json/fcp/v1/forms/{id}/entries
-DELETE /wp-json/fcp/v1/entries/{id}
-```
-
----
-
-## 📚 مستندات
-
-### راهنماهای موجود
-
-- [راهنمای نصب فارسی](INSTALL-FA.md)
-- [گزارش نهایی](گزارش-نهایی-کامل.md)
-
----
-
-## 🤝 مشارکت
-
-مشارکت شما استقبال می‌شود! لطفاً این مراحل را دنبال کنید:
-
-1. Fork کنید
-2. یک branch جدید بسازید
-3. تغییرات را commit کنید
-4. Push کنید
-5. یک Pull Request باز کنید
-
----
-
-## 📄 لایسنس
-
-این پروژه تحت لایسنس MIT منتشر شده است.
-
----
-
-<div align="center">
-
-**ساخته شده با ❤️ برای جامعه وردپرس**
-
-</div>
+**Developed by LoopArchie** | [https://looparc.ir](https://looparc.ir)

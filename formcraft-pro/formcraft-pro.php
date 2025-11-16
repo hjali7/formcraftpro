@@ -2,7 +2,7 @@
 /**
  * Plugin Name: FormCraft Pro
  * Description: Advanced form builder with AI-generator and Visual Conditional Logic Canvas.
- * Version: 2.1.0
+ * Version: 2.2.0
  * Author: LoopArchie
  * Author URI: https://looparc.ir
  * Text Domain: formcraft-pro
@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) exit;
 // constants
 define('FCP_PATH', plugin_dir_path(__FILE__));
 define('FCP_URL', plugin_dir_url(__FILE__));
-define('FCP_VERSION', '2.1.0');
+define('FCP_VERSION', '2.2.0');
 
 // autoload (simple)
 require_once FCP_PATH . 'includes/class-formcraft-activator.php';
@@ -114,7 +114,18 @@ function formcraft_pro_admin_page() {
 
 // enqueue build files
 add_action('admin_enqueue_scripts', function($hook){
-    if ($hook !== 'toplevel_page_formcraft-pro') return;
+    // Check if we're on any FormCraft page
+    $formcraft_pages = [
+        'toplevel_page_formcraft-pro',
+        'formcraft_page_formcraft-pro-new',
+        'formcraft_page_formcraft-pro-entries',
+        'formcraft_page_formcraft-pro-settings',
+        'formcraft_page_formcraft-pro-import-export',
+        'formcraft_page_formcraft-pro-system-status',
+        'formcraft_page_formcraft-pro-help'
+    ];
+    
+    if (!in_array($hook, $formcraft_pages)) return;
 
     wp_enqueue_style('formcraft-admin-styles', FCP_URL . 'build/admin.styles.css', array(), FCP_VERSION);
     wp_enqueue_script('formcraft-admin-app', FCP_URL . 'build/admin.bundle.js', array('wp-element','wp-i18n','wp-api-fetch'), FCP_VERSION, true);

@@ -1,5 +1,33 @@
 # Changelog
 
+## Version 2.2.0 - 2024-11-17
+
+### Added
+- 🎯 **Enhanced Help Page**: Comprehensive help center with:
+  - Searchable documentation
+  - Categorized help topics
+  - Frequently Asked Questions (FAQs)
+  - Developer resources
+  - Quick links to documentation and support
+- 📊 **Advanced System Status Page**: Detailed system information including:
+  - WordPress environment details
+  - Server configuration
+  - PHP extensions check
+  - Database tables status
+  - System requirements verification
+  - Download/Copy system report functionality
+  - Real-time status indicators
+- 🔄 Refresh functionality for system status
+- 📥 Export system report as text file
+
+### Improved
+- Better organization of help resources
+- Enhanced visual indicators for system status
+- More detailed system information display
+- Improved user experience across all pages
+
+---
+
 ## Version 2.1.0 - 2024-11-17
 
 ### Added
