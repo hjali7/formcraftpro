@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FiPlus, FiEdit2, FiTrash2, FiCopy, FiBarChart2, FiSearch } from 'react-icons/fi';
 import { useFormStore } from '../store/formStore';
+import TemplateGallery from '../components/TemplateGallery';
+import ActionDropdown from '../components/ActionDropdown';
 
 interface FormListItem {
   id: number;
@@ -16,8 +18,7 @@ export default function Dashboard() {
   const [forms, setForms] = useState<FormListItem[]>([]);
   const [filteredForms, setFilteredForms] = useState<FormListItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showNewFormModal, setShowNewFormModal] = useState(false);
-  const [newFormTitle, setNewFormTitle] = useState('');
+  const [showTemplateGallery, setShowTemplateGallery] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedForms, setSelectedForms] = useState<number[]>([]);
@@ -71,25 +72,26 @@ export default function Dashboard() {
     }
   }
 
-  async function createForm() {
-    if (!newFormTitle.trim()) return;
+  async function createFormFromTemplate(template: any) {
+    const formTitle = template?.id === 'blank' 
+      ? 'فرم جدید' 
+      : template?.title || 'فرم جدید';
     
     try {
       const res = await axios.post(
         `${window.FCP_Settings.root}fcp/v1/forms`,
-        { title: newFormTitle },
+        { title: formTitle },
         { headers: { 'X-WP-Nonce': window.FCP_Settings.nonce } }
       );
       
-      setNewFormTitle('');
-      setShowNewFormModal(false);
+      setShowTemplateGallery(false);
       fetchForms();
       
-      // Navigate to builder
+      // Navigate to builder with template fields
       const newForm = {
         id: res.data.id,
-        title: newFormTitle,
-        fields: [],
+        title: formTitle,
+        fields: template?.fields || [],
         settings: {
           submitButtonText: 'ارسال',
           successMessage: 'فرم با موفقیت ارسال شد'
@@ -99,6 +101,7 @@ export default function Dashboard() {
       window.location.hash = '#/builder';
     } catch (error) {
       console.error('Error creating form:', error);
+      alert('خطا در ساخت فرم');
     }
   }
 
@@ -214,7 +217,7 @@ export default function Dashboard() {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Forms</h1>
         <button
-          onClick={() => setShowNewFormModal(true)}
+          onClick={() => setShowTemplateGallery(true)}
           data-action="new-form"
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
@@ -358,51 +361,24 @@ export default function Dashboard() {
                     />
                   </td>
                   <td className="px-4 py-3">
-                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800">
+                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800 cursor-default">
                       Active
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-between gap-2">
                       <button
                         onClick={() => editForm(form)}
                         className="font-medium text-blue-600 hover:text-blue-800 hover:underline"
                       >
                         {form.title}
                       </button>
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
-                        <button
-                          onClick={() => editForm(form)}
-                          className="text-xs text-gray-600 hover:text-blue-600"
-                          title="Edit"
-                        >
-                          Edit
-                        </button>
-                        <span className="text-gray-400">|</span>
-                        <button
-                          onClick={() => duplicateForm(form)}
-                          className="text-xs text-gray-600 hover:text-blue-600"
-                          title="Duplicate"
-                        >
-                          Duplicate
-                        </button>
-                        <span className="text-gray-400">|</span>
-                        <button
-                          onClick={() => window.location.hash = `#/entries/${form.id}`}
-                          className="text-xs text-gray-600 hover:text-blue-600"
-                          title="Entries"
-                        >
-                          Entries
-                        </button>
-                        <span className="text-gray-400">|</span>
-                        <button
-                          onClick={() => deleteForm(form.id)}
-                          className="text-xs text-red-600 hover:text-red-800"
-                          title="Trash"
-                        >
-                          Trash
-                        </button>
-                      </div>
+                      <ActionDropdown
+                        onEdit={() => editForm(form)}
+                        onDuplicate={() => duplicateForm(form)}
+                        onViewEntries={() => window.location.hash = `#/entries/${form.id}`}
+                        onDelete={() => deleteForm(form.id)}
+                      />
                     </div>
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-600">{form.id}</td>
@@ -441,47 +417,12 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* New Form Modal */}
-      {showNewFormModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900">ساخت فرم جدید</h2>
-            </div>
-            <div className="p-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                عنوان فرم
-              </label>
-              <input
-                type="text"
-                value={newFormTitle}
-                onChange={(e) => setNewFormTitle(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && createForm()}
-                placeholder="مثال: فرم تماس با ما"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                autoFocus
-              />
-            </div>
-            <div className="p-6 bg-gray-50 flex justify-end gap-3 rounded-b-lg">
-              <button
-                onClick={() => {
-                  setShowNewFormModal(false);
-                  setNewFormTitle('');
-                }}
-                className="px-4 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition"
-              >
-                انصراف
-              </button>
-              <button
-                onClick={createForm}
-                disabled={!newFormTitle.trim()}
-                className="btn disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                ساخت فرم
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* Template Gallery Modal */}
+      {showTemplateGallery && (
+        <TemplateGallery
+          onClose={() => setShowTemplateGallery(false)}
+          onSelectTemplate={createFormFromTemplate}
+        />
       )}
     </div>
   );
