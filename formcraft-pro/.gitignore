@@ -80,3 +80,5 @@ coverage/
 *.orig
 *.rej
 .htaccess
+.vscode
+

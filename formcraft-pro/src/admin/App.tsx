@@ -15,16 +15,18 @@ export default function App() {
   const [entriesFormTitle, setEntriesFormTitle] = useState('');
 
   useEffect(() => {
-    // Check URL parameter for page
-    const urlParams = new URLSearchParams(window.location.search);
-    const page = urlParams.get('page');
-    
-    // Simple hash-based routing
-    const handleHashChange = () => {
+    const handleRouting = () => {
+      // Check URL parameter for page
+      const urlParams = new URLSearchParams(window.location.search);
+      const page = urlParams.get('page');
       const hash = window.location.hash.slice(1);
+      
+      console.log('Current page:', page, 'Hash:', hash);
       
       if (hash === '/builder') {
         setCurrentPage('builder');
+      } else if (hash === '/new') {
+        setCurrentPage('dashboard');
       } else if (hash.startsWith('/entries/')) {
         const formId = parseInt(hash.split('/')[2]);
         if (formId) {
@@ -39,18 +41,25 @@ export default function App() {
       } else if (page === 'formcraft-pro-help') {
         setCurrentPage('help');
       } else if (page === 'formcraft-pro-new') {
-        // Trigger new form modal
-        window.location.href = 'admin.php?page=formcraft-pro#/new';
+        setCurrentPage('dashboard');
+        // Trigger new form modal after a short delay
+        setTimeout(() => {
+          const newFormBtn = document.querySelector('[data-action="new-form"]') as HTMLElement;
+          if (newFormBtn) newFormBtn.click();
+        }, 100);
       } else if (page === 'formcraft-pro-entries') {
         setCurrentPage('all-entries');
+      } else if (page === 'formcraft-pro' || !page) {
+        setCurrentPage('dashboard');
       } else {
         setCurrentPage('dashboard');
       }
     };
 
-    handleHashChange();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    handleRouting();
+    window.addEventListener('hashchange', handleRouting);
+    
+    return () => window.removeEventListener('hashchange', handleRouting);
   }, []);
 
   async function loadFormForEntries(formId: number) {

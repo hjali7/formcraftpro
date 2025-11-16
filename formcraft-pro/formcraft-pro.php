@@ -2,8 +2,9 @@
 /**
  * Plugin Name: FormCraft Pro
  * Description: Advanced form builder with AI-generator and Visual Conditional Logic Canvas.
- * Version: 0.1.0
- * Author: Your Name
+ * Version: 2.0.0
+ * Author: LoopArchie
+ * Author URI: https://looparc.ir
  * Text Domain: formcraft-pro
  */
 
@@ -12,7 +13,7 @@ if (!defined('ABSPATH')) exit;
 // constants
 define('FCP_PATH', plugin_dir_path(__FILE__));
 define('FCP_URL', plugin_dir_url(__FILE__));
-define('FCP_VERSION', '0.1.0');
+define('FCP_VERSION', '2.0.0');
 
 // autoload (simple)
 require_once FCP_PATH . 'includes/class-formcraft-activator.php';
@@ -35,11 +36,11 @@ add_action('admin_menu', function() {
         56
     );
     
-    // Submenu: Forms (default)
+    // Submenu: Dashboard (default)
     add_submenu_page(
         'formcraft-pro',
-        __('فرم‌ها', 'formcraft-pro'),
-        __('فرم‌ها', 'formcraft-pro'),
+        __('Dashboard', 'formcraft-pro'),
+        __('Dashboard', 'formcraft-pro'),
         'manage_options',
         'formcraft-pro',
         'formcraft_pro_admin_page'
